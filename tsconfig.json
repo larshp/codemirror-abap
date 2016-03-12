@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "build/"
+        },
+    "filesGlob": [
+        "./**/*.ts"
+        ],
+    "exclude": [
+        "node_modules"
+    ]
+}

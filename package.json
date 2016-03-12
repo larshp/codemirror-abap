@@ -1,0 +1,33 @@
+{
+  "name": "codemirror-abap",
+  "version": "0.1.0",
+  "description": "ABAP mode for CodeMirror",
+  "scripts": {
+    "tslint": "tslint -c tslint.json *.ts",
+    "compile": "tsc",
+    "pretest": "npm run compile",
+    "typings": "tsd install",
+    "test": "npm run tslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larshp/codemirror-abap.git"
+  },
+  "keywords": [
+    "ABAP"
+  ],
+  "author": "Lars Hvam Petersen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/larshp/codemirror-abap/issues"
+  },
+  "homepage": "https://github.com/larshp/codemirror-abap/#readme",
+  "devDependencies": {
+    "tsd": "^0.6.5",
+    "tslint": "^3.5.0",
+    "typescript": "^1.8.7"
+  },
+  "dependencies": {
+    "codemirror": "^5.6.0"
+  }
+}

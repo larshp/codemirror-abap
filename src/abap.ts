@@ -1,16 +1,16 @@
 /// <reference path="../typings/codemirror/codemirror.d.ts" />
 
 const COMMENT  = "comment";
-const STRING   = "string";
-const NUMBER   = "number";
-const KEYWORD  = "keyword";
+// const STRING   = "string";
+// const NUMBER   = "number";
+// const KEYWORD  = "keyword";
 const OPERATOR = "operator";
-const TEXT     = "text";
+// const TEXT     = "text";
 
 class AbapMode implements CodeMirror.Mode<any> {
 
     public token(stream: CodeMirror.StringStream, state: any) {
-        while (stream.eatSpace()) {}
+        while (stream.eatSpace()) { continue; }
 
         if (stream.match(/^\*/)) {
             stream.skipToEnd();

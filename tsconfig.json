@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "outDir": "build/"
+        "outDir": "build/",
+        "sourceMap": true
         },
     "filesGlob": [
         "./**/*.ts"

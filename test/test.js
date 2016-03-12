@@ -2,6 +2,9 @@
 GLOBAL.CodeMirror = require("../node_modules/codemirror/addon/runmode/runmode.node.js");
 require("../build/abap.js");
 
+var chai = require("chai");
+var expect = chai.expect;
+
 function syntax(code) {
     var res = "";
     CodeMirror.runMode(code, "abap", function(text, style) {
@@ -14,4 +17,8 @@ function syntax(code) {
     return res;
 }
 
-console.log(syntax("* comment"));
+describe("simple", function () {
+    it("comment", function () {
+        expect(syntax("* comment")).to.equals("comment");
+    });
+});

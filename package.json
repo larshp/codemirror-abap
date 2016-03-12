@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
-    "tslint": "tslint -c tslint.json *.ts",
+    "tslint": "tslint -c tslint.json src/*.ts",
     "compile": "tsc",
     "pretest": "npm run compile",
+    "test": "mocha",
     "typings": "tsd install",
-    "test": "npm run tslint"
+    "posttest": "npm run tslint"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/larshp/codemirror-abap/#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
     "tsd": "^0.6.5",
     "tslint": "^3.5.0",
     "typescript": "^1.8.7"

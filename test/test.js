@@ -8,7 +8,9 @@ var expect = chai.expect;
 function syntax(code) {
     var res = "";
     CodeMirror.runMode(code, "abap", function(text, style) {
-        if(res.length === 0) {
+        if(style === undefined) {
+            return; // skip space
+        } else if(res.length === 0) {
             res = style;
         } else {
             res = res + " " + style;
@@ -17,8 +19,14 @@ function syntax(code) {
     return res;
 }
 
-describe("simple", function () {
-    it("comment", function () {
-        expect(syntax("* comment")).to.equals("comment");
-    });
+describe("simple", () => {
+    it("comment", () => { expect(syntax("* comment")).to.equals("comment"); });
+    it("comment", () => { expect(syntax("\" comment")).to.equals("comment"); });
+    it("comment", () => { expect(syntax(" \" comment")).to.equals("comment"); });
+    it("keyword", () => { expect(syntax("WRITE ")).to.equals("keyword"); });
+    it("string", () => { expect(syntax("'hello world'")).to.equals("string"); });
+});
+
+describe("multi", () => {
+    it("write", () => { expect(syntax("write 'hello world'")).to.equals("keyword string"); });
 });

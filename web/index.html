@@ -5,7 +5,7 @@
   <meta charset="utf-8"/>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css">
-  <link rel="stylesheet" href="../node_modules/codemirror/theme/twilight.css">
+  <link rel="stylesheet" href="../node_modules/codemirror/theme/seti.css">
   <link rel="stylesheet" href="../node_modules/codemirror/addon/display/fullscreen.css">
   <script src="../node_modules/codemirror/lib/codemirror.js"></script>
   <script src="../node_modules/codemirror/addon/display/fullscreen.js"></script>
@@ -19,9 +19,8 @@
 <body>
 <form><textarea id="code" name="code">
 * ABAP mode testing
-something
 
-WRITE: 'Hello world'.
+WRITE 'Hello world'.
 </textarea></form>
 
 <script>
@@ -30,7 +29,7 @@ WRITE: 'Hello world'.
     lineNumbers: true,
     matchBrackets: true,
     fullScreen: true,
-    theme: "twilight",
+    theme: "seti",
     mode: "abap"
   });
 </script>

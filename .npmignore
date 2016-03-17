@@ -1,0 +1,5 @@
+typings/
+*.js.map
+src/
+test/
+web/

@@ -23,10 +23,15 @@ describe("simple", () => {
     it("comment", () => { expect(syntax("* comment")).to.equals("comment"); });
     it("comment", () => { expect(syntax("\" comment")).to.equals("comment"); });
     it("comment", () => { expect(syntax(" \" comment")).to.equals("comment"); });
-    it("keyword", () => { expect(syntax("WRITE ")).to.equals("keyword"); });
+    it("keyword", () => { expect(syntax("WRITE")).to.equals("keyword"); });
     it("string", () => { expect(syntax("'hello world'")).to.equals("string"); });
+    it("keyword", () => { expect(syntax("endclass")).to.equals("keyword"); });
+    it("number1", () => { expect(syntax("123")).to.equals("number"); });
+    it("number2", () => { expect(syntax("1")).to.equals("number"); });
+    it("operator", () => { expect(syntax("=")).to.equals("operator"); });
 });
 
 describe("multi", () => {
+    it("if", () => { expect(syntax("IF 5 > 2")).to.equals("keyword number operator number"); });
     it("write", () => { expect(syntax("write 'hello world'")).to.equals("keyword string"); });
 });

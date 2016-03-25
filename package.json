@@ -15,7 +15,8 @@
     "url": "git+https://github.com/larshp/codemirror-abap.git"
   },
   "keywords": [
-    "ABAP"
+    "ABAP",
+    "CodeMirror"
   ],
   "author": "Lars Hvam Petersen",
   "license": "MIT",

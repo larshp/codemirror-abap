@@ -29,12 +29,20 @@ WRITE 'Hello world'.
 
 <script>
   /* global CodeMirror */
-  CodeMirror.fromTextArea(document.getElementById("code"), {
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     lineNumbers: true,
     matchBrackets: true,
     fullScreen: true,
+    tabSize: 2,
     theme: "seti",
     mode: "abap"
+  });
+
+  editor.setOption("extraKeys", {
+    Tab: function(cm) {
+      var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+      cm.replaceSelection(spaces);
+    }
   });
 </script>
 </body>

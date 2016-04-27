@@ -1,6 +1,6 @@
 {
   "name": "codemirror-abap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "tslint": "tslint -c tslint.json src/*.ts",

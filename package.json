@@ -28,10 +28,10 @@
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "tsd": "^0.6.5",
-    "tslint": "^3.5.0",
-    "typescript": "^1.8.7"
+    "tslint": "^3.8.1",
+    "typescript": "^1.8.10"
   },
   "dependencies": {
-    "codemirror": "^5.6.0"
+    "codemirror": "^5.14.2"
   }
 }

@@ -1,6 +1,5 @@
 typings/
 *.js.map
-src/
 test/
 web/
 tsconfig.json

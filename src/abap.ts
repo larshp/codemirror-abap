@@ -15,10 +15,10 @@ class AbapMode implements CodeMirror.Mode<any> {
 
         if (this.isKeyword(stream)) {
             return KEYWORD;
-        } else if (stream.match(/^\d+( |\.|$)/, false) !== null) {
+        } else if (stream.match(/^\d+( |\.|$)/, false)) {
             stream.match(/^\d+/);
             return NUMBER;
-        } else if (stream.match(/^##\w+/) !== null) {
+        } else if (stream.match(/^##\w+/)) {
 // pragmas
             return COMMENT;
         }
@@ -138,7 +138,7 @@ class AbapMode implements CodeMirror.Mode<any> {
         let match = false;
         for (let i = 0; i < list.length; i++) {
             let reg = new RegExp("^" + list[i] + "( |\\\.|,|:|$)", "i");
-            if (stream.match(reg, false) !== null) {
+            if (stream.match(reg, false)) {
                 let reg = new RegExp("^" + list[i], "i");
                 stream.match(reg);
                 match = true;

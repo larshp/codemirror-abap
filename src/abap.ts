@@ -159,7 +159,8 @@ class AbapMode implements CodeMirror.Mode<State> {
     }
 }
 
-// tslint:disable-next-line:no-unused-variable
 function ABAPFactory(options: CodeMirror.EditorConfiguration, spec: State): CodeMirror.Mode<State> {
     return new AbapMode();
 }
+
+CodeMirror.defineMode("abap", ABAPFactory);

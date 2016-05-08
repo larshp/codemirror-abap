@@ -1,12 +1,11 @@
 {
   "name": "codemirror-abap",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "postinstall": "npm run typings",
     "tslint": "tslint -c tslint.json src/*.ts",
-    "precompile": "tsc --pretty",
-    "compile": "cat src/loader.js >> build/abap.js",
+    "compile": "tsc --pretty",
     "postcompile": "npm run tslint",
     "pretest": "npm run compile",
     "typings": "typings install",

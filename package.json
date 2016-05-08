@@ -6,10 +6,11 @@
     "postinstall": "npm run typings",
     "tslint": "tslint -c tslint.json src/*.ts",
     "compile": "tsc",
+    "postcompile": "npm run tslint",
     "pretest": "npm run compile",
-    "test": "mocha",
     "typings": "typings install",
-    "posttest": "npm run tslint"
+    "test": "mocha",
+    "posttest": "LC_ALL=C phantomjs headless/headless.js"
   },
   "main": "build/abap.js",
   "repository": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7",
     "tslint": "^3.9.0",
     "typescript": "^1.8.10",
     "typings": "^0.8.1"

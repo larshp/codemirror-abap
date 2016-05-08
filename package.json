@@ -5,7 +5,8 @@
   "scripts": {
     "postinstall": "npm run typings",
     "tslint": "tslint -c tslint.json src/*.ts",
-    "compile": "tsc",
+    "precompile": "tsc --pretty",
+    "compile": "cat src/loader.js >> build/abap.js",
     "postcompile": "npm run tslint",
     "pretest": "npm run compile",
     "typings": "typings install",

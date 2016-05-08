@@ -1,6 +1,6 @@
 {
   "name": "codemirror-abap",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "postinstall": "npm run typings",

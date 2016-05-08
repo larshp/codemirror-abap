@@ -1,4 +1,5 @@
-/// <reference path="../typings/codemirror/codemirror.d.ts" />
+// import "../typings/main.d.ts";
+/// <reference path="../typings/main.d.ts"/>
 
 const COMMENT  = "comment";
 const STRING   = "string";
@@ -7,9 +8,19 @@ const KEYWORD  = "keyword";
 const OPERATOR = "operator";
 const ERROR    = "error";
 
-class AbapMode implements CodeMirror.Mode<any> {
+class State {
+    public mode: boolean;
+}
 
-    public token(stream: CodeMirror.StringStream, state: any) {
+class AbapMode implements CodeMirror.Mode<State> {
+
+    public startState: () => State;
+
+    public constructor() {
+        this.startState = () => { return new State(); };
+    }
+
+    public token(stream: CodeMirror.StringStream, state: State) {
 
         if (stream.eatSpace()) { return undefined; };
 
@@ -149,7 +160,7 @@ class AbapMode implements CodeMirror.Mode<any> {
     }
 }
 
-function factory(options: CodeMirror.EditorConfiguration, spec: any): CodeMirror.Mode<any> {
+function factory(options: CodeMirror.EditorConfiguration, spec: State): CodeMirror.Mode<State> {
     return new AbapMode();
 }
 

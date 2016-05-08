@@ -34,7 +34,7 @@
       "static-before-instance",
       "variables-before-functions"
     ],
-    "no-any": false,
+    "no-any": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,

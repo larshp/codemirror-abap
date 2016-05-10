@@ -3,4 +3,4 @@
 [![npm version](https://badge.fury.io/js/codemirror-abap.svg)](https://badge.fury.io/js/codemirror-abap)
 
 # codemirror-abap
-ABAP mode for CodeMirror
+ABAP mode for [CodeMirror](http://codemirror.net/)

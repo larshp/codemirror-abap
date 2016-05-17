@@ -31,9 +31,9 @@
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "phantomjs-prebuilt": "^2.1.7",
-    "tslint": "^3.10.1",
+    "tslint": "^3.10.2",
     "typescript": "^1.8.10",
-    "typings": "^0.8.1"
+    "typings": "^1.0.3"
   },
   "dependencies": {
     "codemirror": "^5.14.2"

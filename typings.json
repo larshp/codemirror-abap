@@ -1,5 +1,5 @@
 {
   "globalDependencies": {
-    "codemirror": "registry:dt/codemirror#0.0.0+20160423074321"
+    "codemirror": "registry:dt/codemirror#0.0.0+20160619021621"
   }
 }

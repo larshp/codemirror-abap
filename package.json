@@ -1,6 +1,6 @@
 {
   "name": "codemirror-abap",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "postinstall": "npm run typings",
@@ -29,11 +29,11 @@
   "homepage": "https://github.com/larshp/codemirror-abap/#readme",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5",
-    "phantomjs-prebuilt": "^2.1.7",
-    "tslint": "^3.10.2",
+    "mocha": "^3.0.1",
+    "phantomjs-prebuilt": "^2.1.10",
+    "tslint": "^3.14.0",
     "typescript": "^1.8.10",
-    "typings": "^1.0.3"
+    "typings": "^1.3.2"
   },
   "dependencies": {
     "codemirror": "^5.14.2"

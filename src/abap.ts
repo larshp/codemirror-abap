@@ -1,5 +1,3 @@
-/// <reference path="../typings/index.d.ts"/>
-
 const COMMENT  = "comment";
 const STRING   = "string";
 const NUMBER   = "number";

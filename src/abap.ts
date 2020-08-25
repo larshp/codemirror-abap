@@ -1,3 +1,6 @@
+import * as CodeMirror from 'codemirror';
+import { KEYWORDS, OPERATORS } from "./constants"
+
 const COMMENT = "comment";
 const STRING = "string";
 const NUMBER = "number";
@@ -46,9 +49,6 @@ class AbapMode implements CodeMirror.Mode<State> {
       stream.skipToEnd();
       return COMMENT;
     } else if (this.isOperator(stream)) {
-      // if (peek !== " ") {
-      //   stream.next();
-      // }
       return OPERATOR;
     } else if (ch === "\'") {
       let next = "";
@@ -77,60 +77,9 @@ class AbapMode implements CodeMirror.Mode<State> {
   };
 
   private setupKeywords() {
-    const KEYWORDS =
-      "REF " +
-      "ALIAS ALIASES APPEND ASCENDING ASSERT ASSIGN ASSIGNING " +
-      "BACK BEGIN BINARY BLOCK BOUND BY BYTE " +
-      "CALL CHANGING CHECK CLEAR CLOSE CNT COLLECT COMMIT CHARACTER " +
-      "CORRESPONDING COMMUNICATION COMPONENT COMPUTE CONCATENATE CONDENSE CONSTANTS " +
-      "CONTROLS CONVERT CREATE CURRENCY " +
-      "DATA DESCENDING DEFAULT DEFINE DEFINITION DEFERRED DELETE DESCRIBE DETAIL DIVIDE DURATION " +
-      "DELETING " +
-      "END ENDEXEC ENDFUNCTION " +
-      "ENDCLASS ENDMETHOD ENDFORM " +
-      "CLASS METHOD FORM " +
-      "ENDINTERFACE ENDMODULE " +
-      "ENDPROVIDE ENDSELECT ENDTRY ENDWHILE EVENT EVENTS EXEC EXIT EXPORT " +
-      "EXPORTING EXTRACT EXCEPTION EXCEPTIONS " +
-      "FRAME FETCH FIELDS FINAL FORMAT FREE FROM FUNCTION FIND FOR " +
-      "GENERATE " +
-      "HARMLESS HIDE " +
-      "IMPORT IMPORTING INDEX INFOTYPES INITIAL INITIALIZATION " +
-      "INTERFACE INTERFACES INPUT INSERT IMPLEMENTATION INTO " +
-      "LEAVE LEVEL LIKE LINE LOAD LOCAL LENGTH LEFT LEADING " +
-      "METHOD MESSAGE METHODS MODIFY MODULE MOVE MULTIPLY MATCH " +
-      "NEW " +
-      "OBJECT OBLIGATORY OVERLAY OPTIONAL OTHERS OCCURRENCES OCCURS OFFSET " +
-      "PACK PARAMETERS PERFORM POSITION PRIVATE PROGRAM PROTECTED PROVIDE PUBLIC " +
-      "RADIOBUTTON RAISING RANGES RECEIVE RECEIVING REDEFINITION REF " +
-      "REFERENCE REFRESH REGEX REJECT RESULTS " +
-      "REPLACE REPORT RESERVE RESTORE RETURN RETURNING RISK ROLLBACK READ " +
-      "SCAN SCROLL SEARCH SELECT SEPARATED SHIFT SHORT SINGLE SKIP SORT SORTED SPLIT STANDARD " +
-      "STATICS STEP STOP STRUCTURE SUBMATCHES SUBMIT SUBTRACT SUMMARY SUPPRESS SECTION " +
-      "TABLES TABLE TESTING TIMES TITLE TITLEBAR TO TRANSFER TRANSFORMATION TRANSLATE TYPES TYPE " +
-      "UNASSIGN ULINE UNPACK UPDATE USING " +
-      "VALUE " +
-      "WHEN WHILE WINDOW WRITE WHERE WITH " +
-      "ADD-CORRESPONDING AUTHORITY-CHECK " +
-      "BREAK-POINT CLASS-DATA " +
-      "CLASS-METHOD CLASS-METHODS " +
-      "DIVIDE-CORRESPONDING DISPLAY DISPLAY-MODE " +
-      "EDITOR-CALL END-OF-DEFINITION END-OF-PAGE END-OF-SELECTION " +
-      "FIELD-GROUPS FIELD-SYMBOL FIELD-SYMBOLS " +
-      "FUNCTION-POOL LEFT-JUSTIFIED LINE-COUNT LINE-SIZE " +
-      "MESSAGE-ID MOVE-CORRESPONDING MULTIPLY-CORRESPONDING " +
-      "NEW-LINE NEW-PAGE NEW-SECTION " +
-      "NO-GAP NO-SIGN " +
-      "NO-ZERO PRINT-CONTROL " +
-      "READ-ONLY RIGHT-JUSTIFIED " +
-      "SELECT-OPTIONS SELECTION-SCREEN START-OF-SELECTION " +
-      "SUBTRACT-CORRESPONDING SYNTAX-CHECK " +
-      "SYNTAX-TRACE SYSTEM-CALL TOP-OF-PAGE TYPE-POOL TYPE-POOLS " +
-      "AT CASE CATCH CONTINUE DO ELSEIF ELSE ENDAT ENDCASE ENDDO ENDIF " +
-      "ENDLOOP ENDON IF LOOP ON RAISE TRY WORK";
+
 
     this.keywords = KEYWORDS
-      .split(' ')
       .reduce(
         (result, word) => ({
           ...result,
@@ -164,15 +113,15 @@ class AbapMode implements CodeMirror.Mode<State> {
   }
 
   private isOperator(stream: CodeMirror.StringStream): boolean {
-    const OPERATORS = "?= = > <> < <= >= + - * ** / & &&";
+    // const OPERATORS = "?= = > <> < <= >= + - * ** / & &&";
 
-    const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
+    // const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
 
-    const checkOperator = (input: string) => OPERATORS
-      .concat(OPERATOR_WORDS)
-      .split(" ")
-      .includes(input);
-
+    // const checkOperator = (input: string) => OPERATORS
+    //   .concat(OPERATOR_WORDS)
+    //   .split(" ")
+    //   .includes(input);
+    const checkOperator = (input: string) => OPERATORS.includes(input);
     return this.checkMatch(stream, " ", checkOperator)
   }
 
@@ -185,7 +134,7 @@ class AbapMode implements CodeMirror.Mode<State> {
   }
 }
 
-function ABAPFactory(options: CodeMirror.EditorConfiguration, spec: State): CodeMirror.Mode<State> {
+export function ABAPFactory(options: CodeMirror.EditorConfiguration, spec: State): CodeMirror.Mode<State> {
   return new AbapMode();
 }
 

@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "commonjs",
-    "outDir": "build/",
+    "moduleResolution": "node",
+    "outDir": "lib/",
     "sourceMap": true,
-    "lib": ["es6", "dom", "es2017"]
+    "lib": ["es6", "dom", "es2017"],
+    "declaration": true,
+    "esModuleInterop": true
   },
   "filesGlob": ["./**/*.ts"],
   "exclude": ["node_modules", "typings"]

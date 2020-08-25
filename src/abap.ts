@@ -1,6 +1,14 @@
 import CodeMirror from 'codemirror';
 import 'codemirror/addon/runmode/runmode';
-import { KEYWORDS, OPERATORS, COMMENT, STRING, NUMBER, KEYWORD, OPERATOR } from "./constants"
+import {
+  KEYWORDS,
+  OPERATORS,
+  COMMENT,
+  STRING,
+  NUMBER,
+  KEYWORD,
+  OPERATOR,
+} from './constants';
 
 interface Keywords {
   [key: string]: boolean;
@@ -21,7 +29,11 @@ export const abapMode = (): AbapMode => {
 
   const keywords = composeKeywords(KEYWORDS);
 
-  const checkMatch = (stream: CodeMirror.StringStream, separators: string | string[], callback: CheckMatchCallback): boolean => {
+  const checkMatch = (
+    stream: CodeMirror.StringStream,
+    separators: string | string[],
+    callback: CheckMatchCallback,
+  ): boolean => {
     let next = stream.next();
     let back = 0;
     while (true) {
@@ -42,22 +54,21 @@ export const abapMode = (): AbapMode => {
       stream.backUp(back);
     }
     return match;
-  }
-
+  };
 
   const isKeyword = (stream: CodeMirror.StringStream): boolean => {
     const checkKeyword: CheckMatchCallback = (input: string) =>
       keywords.propertyIsEnumerable(input);
-    const KEYWORD_SEPARATORS = "(.,: ";
+    const KEYWORD_SEPARATORS = '(.,: ';
 
-    return checkMatch(stream, KEYWORD_SEPARATORS, checkKeyword)
+    return checkMatch(stream, KEYWORD_SEPARATORS, checkKeyword);
   };
 
   const isOperator = (stream: CodeMirror.StringStream): boolean => {
-    const checkOperator: CheckMatchCallback
-      = (input: string) => OPERATORS.includes(input);
+    const checkOperator: CheckMatchCallback = (input: string) =>
+      OPERATORS.includes(input);
 
-    return checkMatch(stream, " ", checkOperator)
+    return checkMatch(stream, ' ', checkOperator);
   };
 
   return {
@@ -132,10 +143,9 @@ export const initAbapMode = (codemirror: any): void => {
   };
 
   /* istanbul ignore next */
-  codemirror.modeInfo =
-    codemirror.modeInfo
-      ? codemirror.modeInfo.push(mimeType)
-      : [mimeType]
+  codemirror.modeInfo = codemirror.modeInfo
+    ? codemirror.modeInfo.push(mimeType)
+    : [mimeType];
 
   return codemirror;
 };

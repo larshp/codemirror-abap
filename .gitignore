@@ -1,5 +1,8 @@
 typings/
 build/
+lib/
+lib-esm/
+_bundles/
 npm-debug.log
 node_modules/
 .vscode/

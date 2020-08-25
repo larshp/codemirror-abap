@@ -26,14 +26,13 @@
   },
   "homepage": "https://github.com/larshp/codemirror-abap/#readme",
   "devDependencies": {
-    "@types/codemirror": "0.0.33",
+    "@types/codemirror": "0.0.97",
     "chai": "^3.5.0",
+    "codemirror": "^5.57.0",
     "mocha": "^3.0.2",
     "phantomjs-prebuilt": "^2.1.12",
     "tslint": "^3.15.1",
     "typescript": "^2.0.3"
   },
-  "dependencies": {
-    "codemirror": "^5.19.0"
-  }
+  "dependencies": {}
 }

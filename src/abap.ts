@@ -42,13 +42,13 @@ class AbapMode implements CodeMirror.Mode<State> {
       peek = "";
     }
 
-    if ((ch === "*" && stream.column() === 0) || ch === "\"") {
+    if ((ch === "*" && stream.column() === 0) || ch === '"') {
       stream.skipToEnd();
       return COMMENT;
-    } else if (this.isOperator(ch + peek)) {
-      if (peek !== " ") {
-        stream.next();
-      }
+    } else if (this.isOperator(stream)) {
+      // if (peek !== " ") {
+      //   stream.next();
+      // }
       return OPERATOR;
     } else if (ch === "\'") {
       let next = "";
@@ -140,25 +140,13 @@ class AbapMode implements CodeMirror.Mode<State> {
       );
   }
 
-  private isOperator(str: string): boolean {
-    const OPERATORS = "?= = > <> < <= >= + - * ** / & &&";
-
-    const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
-
-    str = str.toUpperCase().trim();
-
-    const list = OPERATORS.concat(OPERATOR_WORDS).split(" ");
-    return list.includes(str);
-  }
-
-  private isKeyword(stream: CodeMirror.StringStream): boolean {
-
+  private checkMatch(stream: CodeMirror.StringStream, separators: string | string[], callback): boolean {
     let next = stream.next();
     let back = 0;
     while (true) {
       if (!next) {
         break;
-      } else if (next === " " || next === '(' || next === "." || next === "," || next === ":") {
+      } else if (separators.includes(next)) {
         stream.backUp(1);
         break;
       } else {
@@ -168,11 +156,32 @@ class AbapMode implements CodeMirror.Mode<State> {
     }
 
     const toCheck = stream.current().toUpperCase();
-    const match = this.keywords.propertyIsEnumerable(toCheck);
+    const match = callback(toCheck);
     if (match === false) {
       stream.backUp(back);
     }
     return match;
+  }
+
+  private isOperator(stream: CodeMirror.StringStream): boolean {
+    const OPERATORS = "?= = > <> < <= >= + - * ** / & &&";
+
+    const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
+
+    const checkOperator = (input: string) => OPERATORS
+      .concat(OPERATOR_WORDS)
+      .split(" ")
+      .includes(input);
+
+    return this.checkMatch(stream, " ", checkOperator)
+  }
+
+  private isKeyword(stream: CodeMirror.StringStream): boolean {
+    const checkKeyword = (input: string) =>
+      this.keywords.propertyIsEnumerable(input);
+    const KEYWORD_SEPARATORS = "(.,: ";
+
+    return this.checkMatch(stream, KEYWORD_SEPARATORS, checkKeyword)
   }
 }
 

@@ -1,9 +1,9 @@
-const COMMENT  = "comment";
-const STRING   = "string";
-const NUMBER   = "number";
-const KEYWORD  = "keyword";
+const COMMENT = "comment";
+const STRING = "string";
+const NUMBER = "number";
+const KEYWORD = "keyword";
 const OPERATOR = "operator";
-const ERROR    = "error";
+const ERROR = "error";
 
 class State {
   public mode: boolean;
@@ -32,7 +32,7 @@ class AbapMode implements CodeMirror.Mode<State> {
       stream.match(/^\d+/);
       return NUMBER;
     } else if (stream.match(/^##\w+/)) {
-// pragmas
+      // pragmas
       return COMMENT;
     }
 
@@ -116,7 +116,7 @@ class AbapMode implements CodeMirror.Mode<State> {
       "CLASS-METHOD CLASS-METHODS " +
       "DIVIDE-CORRESPONDING DISPLAY DISPLAY-MODE " +
       "EDITOR-CALL END-OF-DEFINITION END-OF-PAGE END-OF-SELECTION " +
-      "FIELD-GROUPS FIELD-SYMBOLS " +
+      "FIELD-GROUPS FIELD-SYMBOL FIELD-SYMBOLS " +
       "FUNCTION-POOL LEFT-JUSTIFIED LINE-COUNT LINE-SIZE " +
       "MESSAGE-ID MOVE-CORRESPONDING MULTIPLY-CORRESPONDING " +
       "NEW-LINE NEW-PAGE NEW-SECTION " +
@@ -159,7 +159,7 @@ class AbapMode implements CodeMirror.Mode<State> {
     while (true) {
       if (!next) {
         break;
-      } else if (next === " " || next === "." || next === "," || next === ":") {
+      } else if (next === " " || next === '(' || next === "." || next === "," || next === ":") {
         stream.backUp(1);
         break;
       } else {
@@ -168,7 +168,8 @@ class AbapMode implements CodeMirror.Mode<State> {
       next = stream.next();
     }
 
-    let match = this.keywords.propertyIsEnumerable(stream.current().toUpperCase());
+    const toCheck = stream.current().toUpperCase();
+    let match = this.keywords.propertyIsEnumerable(toCheck);
     if (match === false) {
       stream.backUp(back);
     }

@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="150" src="img/logo.svg">
+  <img height="250" src="img/logo.svg">
 </p>
 <h1 align="center"> codemirror-abap </h1>
 <p align="center">

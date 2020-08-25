@@ -141,7 +141,7 @@ class AbapMode implements CodeMirror.Mode<State> {
   }
 
   private isOperator(str: string): boolean {
-    const OPERATORS = "?= = > <> < + - * / &&";
+    const OPERATORS = "?= = > <> < <= >= + - * ** / & &&";
 
     const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
 

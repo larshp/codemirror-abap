@@ -10,5 +10,5 @@
     "esModuleInterop": true
   },
   "filesGlob": ["./**/*.ts"],
-  "exclude": ["node_modules", "typings"]
+  "exclude": ["node_modules", "typings", "**/__tests__/*"]
 }

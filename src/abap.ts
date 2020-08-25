@@ -2,7 +2,6 @@ import CodeMirror from 'codemirror';
 import 'codemirror/addon/runmode/runmode';
 import { KEYWORDS, OPERATORS, COMMENT, STRING, NUMBER, KEYWORD, OPERATOR } from "./constants"
 
-
 interface Keywords {
   [key: string]: boolean;
 }
@@ -132,6 +131,7 @@ export const initAbapMode = (codemirror: any): void => {
     ext: ['abap'],
   };
 
+  /* istanbul ignore next */
   codemirror.modeInfo =
     codemirror.modeInfo
       ? codemirror.modeInfo.push(mimeType)
@@ -140,6 +140,7 @@ export const initAbapMode = (codemirror: any): void => {
   return codemirror;
 };
 
+/* istanbul ignore next */
 if (window.CodeMirror) {
   initAbapMode(window.CodeMirror);
 }

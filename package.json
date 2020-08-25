@@ -4,9 +4,10 @@
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "dev": "nodemon --watch src/ --exec npm run build --ext js,ts",
-    "tslint": "tslint -c tslint.json src/*.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
     "build": "tsc --pretty",
-    "postcompile": "npm run tslint",
+    "postcompile": "npm run lint",
     "pretest": "npm run build",
     "test": "mocha"
   },
@@ -31,7 +32,9 @@
     "codemirror": "^5.57.0",
     "mocha": "^8.1.1",
     "nodemon": "^2.0.4",
+    "prettier": "^2.1.0",
     "tslint": "^3.15.1",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.0.2"
   },
   "dependencies": {}

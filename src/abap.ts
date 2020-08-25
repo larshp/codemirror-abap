@@ -78,8 +78,8 @@ class AbapMode implements CodeMirror.Mode<State> {
 
   private setupKeywords() {
     const KEYWORDS =
-      "IS NOT EQ GE GT REF " +
-      "AND ALIAS ALIASES APPEND ASCENDING ASSERT ASSIGN ASSIGNING " +
+      "REF " +
+      "ALIAS ALIASES APPEND ASCENDING ASSERT ASSIGN ASSIGNING " +
       "BACK BEGIN BINARY BLOCK BOUND BY BYTE " +
       "CALL CHANGING CHECK CLEAR CLOSE CNT COLLECT COMMIT CHARACTER " +
       "CORRESPONDING COMMUNICATION COMPONENT COMPUTE CONCATENATE CONDENSE CONSTANTS " +
@@ -142,9 +142,12 @@ class AbapMode implements CodeMirror.Mode<State> {
 
   private isOperator(str: string): boolean {
     const OPERATORS = "?= = > <> < + - * / &&";
+
+    const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
+
     str = str.trim();
 
-    const list = OPERATORS.split(" ");
+    const list = OPERATORS.concat(OPERATOR_WORDS).split(" ");
     return list.includes(str);
   }
 

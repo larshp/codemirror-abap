@@ -145,7 +145,7 @@ class AbapMode implements CodeMirror.Mode<State> {
 
     const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
 
-    str = str.trim();
+    str = str.toUpperCase().trim();
 
     const list = OPERATORS.concat(OPERATOR_WORDS).split(" ");
     return list.includes(str);

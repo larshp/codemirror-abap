@@ -4,20 +4,26 @@
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "dev": "nodemon --watch src/ --exec npm run build --ext js,ts --ignore **/__tests__/**",
-    "build": "npm run clean && npm run build-all",
-    "build-all": "npm run build-module && npm run build-esm && npm run build-bundle",
-    "build-module": "tsc -p config/tsconfig.json",
-    "build-esm": "tsc -p config/tsconfig.json -m es6 --outDir lib-esm",
-    "build-bundle": "webpack --config config/webpack.config.js",
-    "postcompile": "npm run lint",
     "test": "jest --config config/jest.config.js",
-    "clean": "shx rm -rf _bundles lib lib-esm",
+    "build": "npm run clean && npm run build-all",
+    "build-all": "npm run module && npm run esm && npm run bundle",
+    "module": "tsc -p config/tsconfig.json",
+    "esm": "tsc -p config/tsconfig.json -m es6 --outDir lib-esm",
+    "bundle": "webpack --config config/webpack.config.js",
+    "postcompile": "npm run lint",
+    "clean": "shx rm -rf bundles lib lib-esm",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "tslint -p config/tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "version": "npm run format",
     "postversion": "git push && git push --tags"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint",
+      "pre-push": "npm test"
+    }
   },
   "main": "lib/abap.js",
   "repository": {
@@ -42,6 +48,7 @@
   "devDependencies": {
     "@types/codemirror": "0.0.97",
     "@types/jest": "^26.0.10",
+    "husky": "^4.2.5",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.0",

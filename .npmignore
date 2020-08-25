@@ -1,7 +1,0 @@
-typings/
-*.js.map
-test/
-web/
-tsconfig.json
-tsd.json
-tslint.json

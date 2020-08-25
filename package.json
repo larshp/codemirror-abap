@@ -3,8 +3,9 @@
   "version": "0.1.9",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
+    "dev": "nodemon --watch src/ --exec npm run build --ext js,ts",
     "tslint": "tslint -c tslint.json src/*.ts",
-    "compile": "tsc --pretty",
+    "build": "tsc --pretty",
     "postcompile": "npm run tslint",
     "pretest": "npm run compile",
     "test": "mocha"

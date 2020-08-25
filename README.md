@@ -28,8 +28,8 @@ npm install --save codemirror-abap
 1. Import `codemirror-abap` in your project.  
 
     ```js
-    import CodeMirror from 'codemirror'
-    import { initAbapMode } from 'codemirror-abap/lib/abap'
+    import CodeMirror from 'codemirror';
+    import { initAbapMode } from 'codemirror-abap';
 
     // register Mode and MIME type
     initAbapMode(CodeMirror);
@@ -38,8 +38,8 @@ npm install --save codemirror-abap
     or 
 
     ```js
-    import CodeMirror from 'codemirror'
-    import { abapMode } from 'codemirror-abap/lib/abap'
+    import CodeMirror from 'codemirror';
+    import { abapMode } from 'codemirror-abap';
 
     // explicitly register mode
     CodeMirror.defineMode("abap", abapMode);

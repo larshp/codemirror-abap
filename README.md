@@ -29,7 +29,7 @@ npm install --save codemirror-abap
 
     ```js
     import CodeMirror from 'codemirror'
-    import { initAbapMode } from 'codemirror-abap/lib/index'
+    import { initAbapMode } from 'codemirror-abap/lib/abap'
 
     // register Mode and MIME type
     initAbapMode(CodeMirror);
@@ -39,7 +39,7 @@ npm install --save codemirror-abap
 
     ```js
     import CodeMirror from 'codemirror'
-    import { abapMode } from 'codemirror-abap/lib/index'
+    import { abapMode } from 'codemirror-abap/lib/abap'
 
     // explicitly register mode
     CodeMirror.defineMode("abap", abapMode);

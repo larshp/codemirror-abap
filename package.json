@@ -7,7 +7,7 @@
     "tslint": "tslint -c tslint.json src/*.ts",
     "build": "tsc --pretty",
     "postcompile": "npm run tslint",
-    "pretest": "npm run compile",
+    "pretest": "npm run build",
     "test": "mocha"
   },
   "main": "build/abap.js",

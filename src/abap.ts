@@ -1,12 +1,6 @@
-import * as CodeMirror from 'codemirror';
-import { KEYWORDS, OPERATORS } from "./constants"
-
-const COMMENT = "comment";
-const STRING = "string";
-const NUMBER = "number";
-const KEYWORD = "keyword";
-const OPERATOR = "operator";
-const ERROR = "error";
+import CodeMirror from 'codemirror';
+import 'codemirror/addon/runmode/runmode';
+import { KEYWORDS, OPERATORS, COMMENT, STRING, NUMBER, KEYWORD, OPERATOR } from "./constants"
 
 class State {
   public mode: boolean;
@@ -72,7 +66,7 @@ class AbapMode implements CodeMirror.Mode<State> {
       return STRING;
     } else {
       stream.eatWhile(/(\w|<|>)/);
-      return ERROR;
+      return null;
     }
   };
 
@@ -113,14 +107,6 @@ class AbapMode implements CodeMirror.Mode<State> {
   }
 
   private isOperator(stream: CodeMirror.StringStream): boolean {
-    // const OPERATORS = "?= = > <> < <= >= + - * ** / & &&";
-
-    // const OPERATOR_WORDS = "EQ NE LT GT GE CS CP NP CO CN DIV MOD BIT-AND BIT-OR BIT-XOR BIT-NOT NOT OR AND XOR BETWEEN EQUIV BYTE-CO, BYTE-CN, BYTE-CA BYTE-NA BYTE-CS BYTE-NS";
-
-    // const checkOperator = (input: string) => OPERATORS
-    //   .concat(OPERATOR_WORDS)
-    //   .split(" ")
-    //   .includes(input);
     const checkOperator = (input: string) => OPERATORS.includes(input);
     return this.checkMatch(stream, " ", checkOperator)
   }
@@ -138,4 +124,20 @@ export function ABAPFactory(options: CodeMirror.EditorConfiguration, spec: State
   return new AbapMode();
 }
 
-CodeMirror.defineMode("abap", ABAPFactory);
+export function initAbapMode(codemirror: any) {
+  codemirror.defineMode('abap', ABAPFactory);
+  codemirror.defineMIME('text/abap', 'abap');
+  const mimeType = {
+    name: 'ABAP',
+    mime: 'text/abap',
+    mode: 'abap',
+    ext: ['abap'],
+  };
+
+  codemirror.modeInfo =
+    codemirror.modeInfo
+      ? codemirror.modeInfo.push(mimeType)
+      : [mimeType]
+
+  return codemirror;
+};

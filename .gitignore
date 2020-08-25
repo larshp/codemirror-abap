@@ -6,3 +6,4 @@ bundles/
 npm-debug.log
 node_modules/
 .vscode/
+coverage/

@@ -9,3 +9,9 @@ export const KEYWORDS = KEYWORD_WORDS.split(" ");
 export const OPERATORS = OPERATORS_SYMBOLS
     .concat(OPERATOR_WORDS, " ")
     .split(" ");
+
+export const COMMENT = 'comment';
+export const KEYWORD = 'keyword';
+export const NUMBER = 'number';
+export const OPERATOR = 'operator';
+export const STRING = 'string';

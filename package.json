@@ -3,14 +3,13 @@
   "version": "0.1.9",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
-    "dev": "nodemon --watch src/ --exec npm run build --ext js,ts",
+    "dev": "nodemon --watch src/ --exec npm run build --ext js,ts --ignore **/__tests__/**",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "tslint -p tsconfig.json",
-    "build": "tsc && tsc -m es6 --outDir lib-esm && webpack --config webpack.config.js",
+    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack --config webpack.config.js",
     "clean": "shx rm -rf bundles lib lib-esm",
     "postcompile": "npm run lint",
-    "pretest": "npm run build",
-    "test": "mocha"
+    "test": "jest --config jestconfig.json"
   },
   "main": "build/abap.js",
   "repository": {
@@ -30,7 +29,6 @@
   "devDependencies": {
     "@types/codemirror": "0.0.97",
     "@types/jest": "^26.0.10",
-    "codemirror": "^5.57.0",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.0",
@@ -44,5 +42,7 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
-  "dependencies": {}
+  "dependencies": {
+    "codemirror": "^5.57.0"
+  }
 }

@@ -2,6 +2,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: {
     abap: './src/abap.ts',
     'abap.min': './src/abap.ts',
@@ -13,7 +14,7 @@ module.exports = {
     library: 'abap',
     umdNamedDefine: true,
   },
-  externals: [/^codemirror\/.+$/],
+  externals: ['codemirror', /^codemirror\/.+$/],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },

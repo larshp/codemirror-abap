@@ -36,7 +36,8 @@
 
 <script>
   /* global CodeMirror */
-  CodeMirror.defineMode("abap", abap.ABAPFactory);
+  // abap.initAbapMode(CodeMirror);
+  // CodeMirror.defineMode("abap", abap.abapMode);
   var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
     lineNumbers: true,
     matchBrackets: true,

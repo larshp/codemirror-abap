@@ -2,88 +2,27 @@ import CodeMirror from 'codemirror';
 import 'codemirror/addon/runmode/runmode';
 import { KEYWORDS, OPERATORS, COMMENT, STRING, NUMBER, KEYWORD, OPERATOR } from "./constants"
 
-class State {
-  public mode: boolean;
+
+interface Keywords {
+  [key: string]: boolean;
 }
+type AbapMode = CodeMirror.Mode<object>;
 
-class AbapMode implements CodeMirror.Mode<State> {
+type CheckMatchCallback = (input: string) => boolean;
 
-  public startState: () => State;
+export const abapMode = (): AbapMode => {
+  const composeKeywords = (words: string[]): Keywords =>
+    words.reduce(
+      (result, word) => ({
+        ...result,
+        [word]: true,
+      }),
+      {},
+    );
 
-  private keywords;
+  const keywords = composeKeywords(KEYWORDS);
 
-  public constructor() {
-    this.startState = () => { return new State(); };
-    this.setupKeywords();
-  }
-
-  public token(stream: CodeMirror.StringStream, state: State) {
-
-    if (stream.eatSpace()) {
-      return undefined;
-    }
-
-    if (this.isKeyword(stream)) {
-      return KEYWORD;
-    } else if (stream.match(/^\d+( |\.|$)/, false)) {
-      stream.match(/^\d+/);
-      return NUMBER;
-    } else if (stream.match(/^##\w+/)) {
-      // pragmas
-      return COMMENT;
-    }
-
-    const ch = stream.next();
-    let peek = stream.peek();
-    if (peek === undefined) {
-      peek = "";
-    }
-
-    if ((ch === "*" && stream.column() === 0) || ch === '"') {
-      stream.skipToEnd();
-      return COMMENT;
-    } else if (this.isOperator(stream)) {
-      return OPERATOR;
-    } else if (ch === "\'") {
-      let next = "";
-      while (next !== undefined) {
-        if (next === "\'") {
-          state.mode = false;
-          break;
-        }
-        next = stream.next();
-      }
-      return STRING;
-    } else if (ch === "|") {
-      let next = "";
-      while (next !== undefined) {
-        if (next === "|") {
-          state.mode = false;
-          break;
-        }
-        next = stream.next();
-      }
-      return STRING;
-    } else {
-      stream.eatWhile(/(\w|<|>)/);
-      return null;
-    }
-  };
-
-  private setupKeywords() {
-
-
-    this.keywords = KEYWORDS
-      .reduce(
-        (result, word) => ({
-          ...result,
-          [word]: true,
-        }),
-        {},
-      );
-  }
-
-  private checkMatch(stream: CodeMirror.StringStream, separators: string | string[], callback): boolean {
+  const checkMatch = (stream: CodeMirror.StringStream, separators: string | string[], callback: CheckMatchCallback): boolean => {
     let next = stream.next();
     let back = 0;
     while (true) {
@@ -106,26 +45,85 @@ class AbapMode implements CodeMirror.Mode<State> {
     return match;
   }
 
-  private isOperator(stream: CodeMirror.StringStream): boolean {
-    const checkOperator = (input: string) => OPERATORS.includes(input);
-    return this.checkMatch(stream, " ", checkOperator)
-  }
 
-  private isKeyword(stream: CodeMirror.StringStream): boolean {
-    const checkKeyword = (input: string) =>
-      this.keywords.propertyIsEnumerable(input);
+  const isKeyword = (stream: CodeMirror.StringStream): boolean => {
+    const checkKeyword: CheckMatchCallback = (input: string) =>
+      keywords.propertyIsEnumerable(input);
     const KEYWORD_SEPARATORS = "(.,: ";
 
-    return this.checkMatch(stream, KEYWORD_SEPARATORS, checkKeyword)
-  }
-}
+    return checkMatch(stream, KEYWORD_SEPARATORS, checkKeyword)
+  };
 
-export function ABAPFactory(options: CodeMirror.EditorConfiguration, spec: State): CodeMirror.Mode<State> {
-  return new AbapMode();
-}
+  const isOperator = (stream: CodeMirror.StringStream): boolean => {
+    const checkOperator: CheckMatchCallback
+      = (input: string) => OPERATORS.includes(input);
 
-export function initAbapMode(codemirror: any) {
-  codemirror.defineMode('abap', ABAPFactory);
+    return checkMatch(stream, " ", checkOperator)
+  };
+
+  return {
+    token: (stream: CodeMirror.StringStream, state: any) => {
+      if (stream.eatSpace()) {
+        return null;
+      }
+
+      if (isKeyword(stream)) {
+        return KEYWORD;
+      } else if (stream.match(/^\d+( |\.|$)/, false)) {
+        stream.match(/^\d+/);
+        return NUMBER;
+      } else if (stream.match(/^##\w+/)) {
+        // pragmas
+        return COMMENT;
+      }
+
+      const char = stream.next();
+      let peek = stream.peek();
+      if (peek === undefined) {
+        peek = '';
+      }
+
+      if ((char === '*' && stream.column() === 0) || char === '"') {
+        stream.skipToEnd();
+        return COMMENT;
+      } else if (isOperator(stream)) {
+        return OPERATOR;
+      } else if (char === "'") {
+        let next;
+        next = '';
+        while (next !== undefined) {
+          if (next === "'") {
+            state.mode = false;
+            break;
+          }
+          next = stream.next();
+        }
+        return STRING;
+      } else if (char === '|') {
+        let next;
+        next = '';
+        while (next !== undefined) {
+          if (next === '|') {
+            state.mode = false;
+            break;
+          }
+          next = stream.next();
+        }
+        return STRING;
+      } else {
+        stream.eatWhile(/(\w|<|>)/);
+        return null;
+      }
+    },
+
+    startState: () => ({
+      mode: false,
+    }),
+  };
+};
+
+export const initAbapMode = (codemirror: any): void => {
+  codemirror.defineMode('abap', abapMode);
   codemirror.defineMIME('text/abap', 'abap');
   const mimeType = {
     name: 'ABAP',
@@ -141,3 +139,7 @@ export function initAbapMode(codemirror: any) {
 
   return codemirror;
 };
+
+if (window.CodeMirror) {
+  initAbapMode(window.CodeMirror);
+}

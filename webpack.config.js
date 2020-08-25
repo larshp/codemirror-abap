@@ -13,6 +13,7 @@ module.exports = {
     library: 'abap',
     umdNamedDefine: true,
   },
+  externals: [/^codemirror\/.+$/],
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },

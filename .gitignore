@@ -2,7 +2,7 @@ typings/
 build/
 lib/
 lib-esm/
-_bundles/
+bundles/
 npm-debug.log
 node_modules/
 .vscode/

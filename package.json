@@ -13,7 +13,7 @@
     "postcompile": "npm run lint",
     "clean": "shx rm -rf bundles lib lib-esm",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
-    "lint": "tslint -p config/tsconfig.json",
+    "lint": "tslint -c config/tslint.json -p config/tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "version": "npm run format",

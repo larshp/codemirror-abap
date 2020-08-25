@@ -1,5 +1,5 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -33,7 +33,7 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         options: {
-          configFile: path.resolve(__dirname, '../config/tsconfig.json')
+          configFile: path.resolve(__dirname, '../config/tsconfig.json'),
         },
         exclude: /node_modules/,
       },

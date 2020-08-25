@@ -7,7 +7,7 @@ module.exports = {
   rootDir: path.resolve(__dirname, '../'),
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  coverageDirectory: '/coverage/',
+  coverageDirectory: './coverage/',
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   globals: {

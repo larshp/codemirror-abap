@@ -36,7 +36,7 @@ class AbapMode implements CodeMirror.Mode<State> {
       return COMMENT;
     }
 
-    let ch = stream.next();
+    const ch = stream.next();
     let peek = stream.peek();
     if (peek === undefined) {
       peek = "";
@@ -129,27 +129,23 @@ class AbapMode implements CodeMirror.Mode<State> {
       "AT CASE CATCH CONTINUE DO ELSEIF ELSE ENDAT ENDCASE ENDDO ENDIF " +
       "ENDLOOP ENDON IF LOOP ON RAISE TRY WORK";
 
-    let list = KEYWORDS.split(" ");
-
-    this.keywords = {};
-    for (let i = 0; i < list.length; ++i) {
-      this.keywords[list[i]] = true;
-    }
+    this.keywords = KEYWORDS
+      .split(' ')
+      .reduce(
+        (result, word) => ({
+          ...result,
+          [word]: true,
+        }),
+        {},
+      );
   }
 
   private isOperator(str: string): boolean {
     const OPERATORS = "?= = > <> < + - * / &&";
-
     str = str.trim();
 
-    let list = OPERATORS.split(" ");
-
-    for (let i = 0; i < list.length; i++) {
-      if (str === list[i]) {
-        return true;
-      }
-    }
-    return false;
+    const list = OPERATORS.split(" ");
+    return list.includes(str);
   }
 
   private isKeyword(stream: CodeMirror.StringStream): boolean {
@@ -169,7 +165,7 @@ class AbapMode implements CodeMirror.Mode<State> {
     }
 
     const toCheck = stream.current().toUpperCase();
-    let match = this.keywords.propertyIsEnumerable(toCheck);
+    const match = this.keywords.propertyIsEnumerable(toCheck);
     if (match === false) {
       stream.backUp(back);
     }

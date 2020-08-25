@@ -4,18 +4,28 @@
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "dev": "nodemon --watch src/ --exec npm run build --ext js,ts --ignore **/__tests__/**",
+    "build": "npm run clean && npm run build-all",
+    "build-all": "tsc && tsc -m es6 --outDir lib-esm && webpack --config webpack.config.js",
+    "postcompile": "npm run lint",
+    "test": "jest --config jestconfig.json",
+    "clean": "shx rm -rf _bundles lib lib-esm",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "tslint -p tsconfig.json",
-    "build": "npm run clean && tsc && tsc -m es6 --outDir lib-esm && webpack --config webpack.config.js",
-    "clean": "shx rm -rf bundles lib lib-esm",
-    "postcompile": "npm run lint",
-    "test": "jest --config jestconfig.json"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "version": "npm run format",
+    "postversion": "git push && git push --tags"
   },
-  "main": "build/abap.js",
+  "main": "lib/abap.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/larshp/codemirror-abap.git"
   },
+  "files": [
+    "lib/**/*",
+    "lib-esm/**/*",
+    "bundles/**/*"
+  ],
   "keywords": [
     "ABAP",
     "CodeMirror"

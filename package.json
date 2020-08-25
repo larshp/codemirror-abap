@@ -7,8 +7,7 @@
     "compile": "tsc --pretty",
     "postcompile": "npm run tslint",
     "pretest": "npm run compile",
-    "test": "mocha",
-    "posttest": "LC_ALL=C phantomjs headless/headless.js"
+    "test": "mocha"
   },
   "main": "build/abap.js",
   "repository": {

@@ -29,10 +29,8 @@ npm install --save codemirror-abap
 
     ```js
     import CodeMirror from 'codemirror';
-    import { initAbapMode } from 'codemirror-abap';
-
-    // register Mode and MIME type
-    initAbapMode(CodeMirror);
+    // mode and MIME type are registered automatically
+    import 'codemirror-abap';
     ```
 
     or 
@@ -60,8 +58,18 @@ npm install --save codemirror-abap
     ```html
     <!-- CodeMirror is a peer dependency -->
     <script src="js/codemirror.js"></script>
-    <!-- Mode and MIME type are register automatically  -->
+    <!-- mode and MIME type are registered automatically  -->
     <script src="js/codemirror-abap/bundles/abap.min.js"></script>
+    ```
+
+    or
+
+    ```html
+    <script src="js/codemirror.js"></script>
+    <script src="js/codemirror-abap/bundles/abap.min.js"></script>
+
+    <!-- explicitly register mode  -->
+    CodeMirror.defineMode("abap", abap.abapMode);
     ```
 
 2. Set 'abap' as the mode when instantiating the CodeMirror editor.
@@ -71,6 +79,12 @@ npm install --save codemirror-abap
         mode: 'abap'
     });
     ```
+
+### CDN
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.57.0/codemirror.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror-abap/bundles/abap.min.js"></script>
+```
 
 [npm-badge]: https://img.shields.io/npm/v/codemirror-abap.svg
 [npm-url]: https://www.npmjs.com/package/codemirror-abap

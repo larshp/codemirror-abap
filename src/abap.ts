@@ -143,14 +143,31 @@ export const initAbapMode = (codemirror: any): void => {
   };
 
   /* istanbul ignore next */
-  codemirror.modeInfo = codemirror.modeInfo
-    ? codemirror.modeInfo.push(mimeType)
-    : [mimeType];
+  if (codemirror.modeInfo && codemirror.modeInfo.push) {
+    codemirror.modeInfo.push(mimeType);
+  } else if (!codemirror.modeInfo) {
+    codemirror.modeInfo = [mimeType];
+  }
 
   return codemirror;
 };
 
+// automatically initialize the mode
 /* istanbul ignore next */
-if (window.CodeMirror) {
-  initAbapMode(window.CodeMirror);
-}
+((mod) => {
+  if (typeof exports === 'object' && typeof module === 'object')
+    // CommonJS
+    try {
+      mod(require('../../codemirror/lib/codemirror'));
+    } catch (err) {
+      // tslint:disable-next-line:no-console
+      console.log('CodeMirror module not found.');
+    }
+  // @ts-ignore
+  else if (typeof define === 'function' && define.amd)
+    // AMD
+    // @ts-ignore
+    define(['../../codemirror/lib/codemirror'], mod);
+  // Plain browser
+  else mod(CodeMirror);
+})((instance: any) => exports.initAbapMode(instance));

@@ -1,6 +1,6 @@
 {
   "name": "codemirror-abap",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "ABAP mode for CodeMirror",
   "scripts": {
     "dev": "nodemon --watch src/ --exec npm run build --ext js,ts --ignore **/__tests__/**",

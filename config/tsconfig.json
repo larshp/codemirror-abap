@@ -4,12 +4,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "../lib/",
+    "strict": true,
     "sourceMap": true,
     "lib": ["es6", "dom", "es2017"],
     "declaration": true,
     "esModuleInterop": true
   },
-  "filesGlob": ["./**/*.ts"],
   "include": ["../src"],
   "exclude": ["node_modules", "typings", "../src/__tests__/*"]
 }

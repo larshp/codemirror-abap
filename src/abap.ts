@@ -155,7 +155,14 @@ export const initAbapMode = (codemirror: any): void => {
 // automatically initialize the mode
 /* istanbul ignore next */
 ((mod) => {
-  if (typeof exports === 'object' && typeof module === 'object')
+  // Plain browser
+  if (window && window.CodeMirror) {
+    mod(window.CodeMirror)
+  }
+  else if (CodeMirror) {
+    mod(CodeMirror);
+  }
+  else if (typeof exports === 'object' && typeof module === 'object')
     // CommonJS
     try {
       mod(require('../../codemirror/lib/codemirror'));
@@ -168,6 +175,5 @@ export const initAbapMode = (codemirror: any): void => {
     // AMD
     // @ts-ignore
     define(['../../codemirror/lib/codemirror'], mod);
-  // Plain browser
   else mod(CodeMirror);
 })((instance: any) => exports.initAbapMode(instance));

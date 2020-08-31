@@ -157,12 +157,10 @@ export const initAbapMode = (codemirror: any): void => {
 ((mod) => {
   // Plain browser
   if (window && window.CodeMirror) {
-    mod(window.CodeMirror)
-  }
-  else if (CodeMirror) {
+    mod(window.CodeMirror);
+  } else if (CodeMirror) {
     mod(CodeMirror);
-  }
-  else if (typeof exports === 'object' && typeof module === 'object')
+  } else if (typeof exports === 'object' && typeof module === 'object')
     // CommonJS
     try {
       mod(require('../../codemirror/lib/codemirror'));

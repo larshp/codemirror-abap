@@ -86,6 +86,18 @@ npm install --save codemirror-abap
 <script src="https://cdn.jsdelivr.net/npm/codemirror-abap/bundles/abap.min.js"></script>
 ```
 
+## Demo
+
+There's a simple React demo using [react-codemirror2](https://www.npmjs.com/package/react-codemirror2) in the [demo](/demo) directory of the git repo.
+To run the demo:
+
+```bash
+git clone https://github.com/larshp/codemirror-abap.git
+cd codemirror-abap/demo
+npm install
+npm start
+```
+
 [npm-badge]: https://img.shields.io/npm/v/codemirror-abap.svg
 [npm-url]: https://www.npmjs.com/package/codemirror-abap
 [gh-actions-badge]: https://img.shields.io/github/workflow/status/larshp/codemirror-abap/test

@@ -9,7 +9,6 @@
 [![NPM Version][npm-badge]][npm-url]
 [![Github Actions][gh-actions-badge]][gh-actions-url]
 [![Codecov][codecov-badge]][codecov-url]
-<!-- [![Dependency Status][dependency-badge]][dependency-url] -->
 
 ## Description
 

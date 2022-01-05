@@ -22,16 +22,16 @@
 </head>
 <body>
 <form><textarea id="code" name="code">
-  * ABAP mode testing
+* ABAP mode testing
 
-  WRITE 'Hello world!'.
-  WRITE |Logged in as { sy-uname }.|.
-  
-  DATA(lo_request) = 'TEST'.
-  lo_request ?= io_tech_request_context.
+WRITE 'Hello world!'.
+WRITE |Logged in as { sy-uname }.|.
 
-  LOOP AT it_directories ASSIGNING FIELD-SYMBOL( <directory> ).
-  ENDLOOP.
+DATA(lo_request) = 'TEST'.
+lo_request ?= io_tech_request_context.
+
+LOOP AT it_directories ASSIGNING FIELD-SYMBOL( <directory> ).
+ENDLOOP.
 </textarea></form>
 
 <script>

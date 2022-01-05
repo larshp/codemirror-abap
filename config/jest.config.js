@@ -8,11 +8,12 @@ module.exports = {
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   coverageDirectory: './coverage/',
+  testEnvironment: "jsdom",
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{ts,tsx}'],
   globals: {
     'ts-jest': {
-      tsConfig: path.resolve(__dirname, '../config/tsconfig.json'),
+      tsconfig: path.resolve(__dirname, '../config/tsconfig.json'),
     },
   },
 };

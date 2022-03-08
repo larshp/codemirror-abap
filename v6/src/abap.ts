@@ -78,7 +78,7 @@ const isOperator = (stream: StringStream): boolean => {
   return checkMatch(stream, ' ', checkOperator);
 };
 
-export const abapMode: StreamParser<any> = {
+export const abapMode: StreamParser<unknown> = {
   token: (stream: StringStream, state: any) => {
     if (stream.eatSpace()) {
       return null;

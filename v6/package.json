@@ -1,0 +1,20 @@
+{
+  "name": "codemirror6-abap",
+  "version": "0.1.0",
+  "description": "ABAP mode for CodeMirror 6",
+  "scripts": {
+    "test": "tsc",
+    "publish:patch": "npm --no-git-tag-version version patch && rm -rf dist && npm test && npm publish --access public"
+  },
+  "author": "",
+  "type": "module",
+  "types": "dist/abap.d.ts",
+  "module": "dist/abap.js",
+  "license": "MIT",
+  "dependencies": {
+    "@codemirror/stream-parser": "^0.19.7"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  }
+}

@@ -9,5 +9,5 @@
     "lib": ["es6", "dom", "es2017"],
     "declaration": true
   },
-  "include": ["abap.ts"]
+  "include": ["src/abap.ts"]
 }

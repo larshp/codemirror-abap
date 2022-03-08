@@ -14,6 +14,14 @@
   "dependencies": {
     "@codemirror/stream-parser": "^0.19.7"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larshp/codemirror-abap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/larshp/codemirror-abap/issues"
+  },
+  "homepage": "https://github.com/larshp/codemirror-abap/#readme",
   "devDependencies": {
     "typescript": "^4.6.2"
   }

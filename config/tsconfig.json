@@ -3,12 +3,15 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
+    "rootDir": "../src/",
     "outDir": "../lib/",
     "strict": true,
     "sourceMap": true,
     "lib": ["es6", "dom", "es2017"],
+    "types": ["node", "jest"],
     "declaration": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "ignoreDeprecations": "6.0"
   },
   "include": ["../src"],
   "exclude": ["node_modules", "typings", "../src/__tests__/*"]

@@ -59,7 +59,7 @@ export const abapMode = (): AbapMode => {
   const isKeyword = (stream: CodeMirror.StringStream): boolean => {
     const checkKeyword: CheckMatchCallback = (input: string) =>
       keywords.propertyIsEnumerable(input);
-    const KEYWORD_SEPARATORS = '(.,: ';
+    const KEYWORD_SEPARATORS = '(.,:; ';
 
     return checkMatch(stream, KEYWORD_SEPARATORS, checkKeyword);
   };
